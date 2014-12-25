@@ -162,7 +162,7 @@ button,
 input,
 select,
 textarea {
-  margin: 0 0 0 38px;
+  margin: 0 0 0 18px;
   font-family: inherit;
   font-size: 100%;
 }
@@ -1678,7 +1678,6 @@ input[type="file"] {
 
 select[multiple],
 select[size] {
-  height: auto;
 }
 
 select optgroup {

@@ -11,22 +11,18 @@ namespace SE_IMDB_OPDRACHT.Account
 {
     public partial class Register : Page
     {
-        DatabaseConnection dbconn = new DatabaseConnection();;
+        DatabaseConnection dbconn = new DatabaseConnection();
         protected void CreateUser_Click(object sender, EventArgs e)
         {
+            if (dbconn.EmailAvailable(UserName.Text) == true)
+            {
+                dbconn.CreateAccount(Password.Text, UserName.Text, DateTime.Today, "N");
+            }
+            else
+            {
+                ErrorMessage.Text = "Email is al in gebruik!";
+            }
 
-            var manager = new UserManager();
-            var user = new ApplicationUser() { UserName = UserName.Text };
-            IdentityResult result = manager.Create(user, Password.Text);
-            if (result.Succeeded)
-            {
-                IdentityHelper.SignIn(manager, user, isPersistent: false);
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-            }
-            else 
-            {
-                ErrorMessage.Text = result.Errors.FirstOrDefault();
-            }
         }
     }
 }

@@ -54,8 +54,8 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a href="Default.aspx" title="IMDB" target="_blank"><img src="http://ia.media-imdb.com/images/M/MV5BMjAzOTcxMDA2Nl5BMl5BcG5nXkFtZTcwMTc1MzIzOA@@._V1_.png" alt="Indie DB" border="0" width="130" height="65"></a>
-                    <asp:TextBox ID="TextBox1" runat="server" Width="182px"></asp:TextBox>
-                    <asp:Button ID="Button1" runat="server" Text="Search" />
+                    <asp:TextBox ID="TextBox1" runat="server" Width="203px"></asp:TextBox>
+                    <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click1" Width="94px" />
                 </div>
                 <div class="navbar-collapse collapse">
 

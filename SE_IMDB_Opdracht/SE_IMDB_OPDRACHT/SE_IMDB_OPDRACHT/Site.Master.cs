@@ -11,6 +11,7 @@ namespace SE_IMDB_OPDRACHT
 {
     public partial class SiteMaster : MasterPage
     {
+        DatabaseConnection dbconn = new DatabaseConnection();
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
@@ -74,6 +75,17 @@ namespace SE_IMDB_OPDRACHT
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut();
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_Click1(object sender, EventArgs e)
+        {
+            Session["searchresult"] = dbconn.SearchIMDB(TextBox1.Text);
+            Response.Redirect("~/about.aspx");
         }
     }
 
