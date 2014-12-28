@@ -3,15 +3,35 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
     <h3>Your contact page.</h3>
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
+  
+        
+            <div class="PageInfo">
+                <asp:Image ID="Image1" runat="server" Height="164px" />
+            </div>
 
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
-</asp:Content>
+            <div class="PageInfo2">
+                <p class="lead2">eyeyey</p>
+            </div>
+
+                <div class="PageInfo3">
+               
+                    <h3>Cast</h3>
+
+                    <asp:label id="Message"
+                         forecolor="Red"
+                        runat="server"/>
+
+                    <br/>    
+
+                    <asp:gridview id="AuthorsGridView" 
+                          autogeneratecolumns="true" 
+                      runat="server" Height="259px" Width="355px">
+                     </asp:gridview>
+
+               
+            </div>
+        
+        
+    
+
+    </asp:Content>

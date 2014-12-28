@@ -22,16 +22,14 @@ namespace SE_IMDB_OPDRACHT.Account
         {
             if(RememberMe.Checked == true)
             {
-            HttpCookie aCookie = new HttpCookie("userName");
-            aCookie.Value = UserName.Text;
-            aCookie.Expires = DateTime.Now.AddDays(14);
-            Response.Cookies.Add(aCookie);
+
             }
 
 
             if (dbconn.TryLogin(UserName.Text, Password.Text))
             {
-
+                Session["LoggedInUserName"] = UserName.Text;
+                Response.Redirect("~/Default.aspx");
             }
             else
             {

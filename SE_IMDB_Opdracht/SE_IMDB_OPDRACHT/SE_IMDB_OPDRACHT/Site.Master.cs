@@ -18,39 +18,23 @@ namespace SE_IMDB_OPDRACHT
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            // The code below helps to protect against XSRF attacks
-            var requestCookie = Request.Cookies[AntiXsrfTokenKey];
-            Guid requestCookieGuidValue;
-            if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
+           /* if (Session["LoggedInUserName"] == null)
             {
                 // Use the Anti-XSRF token from the cookie
-                _antiXsrfTokenValue = requestCookie.Value;
+                _antiXsrfTokenValue = (string)(Session["LoggedInUserName"]);
                 Page.ViewStateUserKey = _antiXsrfTokenValue;
             }
             else
             {
                 // Generate a new Anti-XSRF token and save to the cookie
-                _antiXsrfTokenValue = Guid.NewGuid().ToString("N");
-                Page.ViewStateUserKey = _antiXsrfTokenValue;
-
-                var responseCookie = new HttpCookie(AntiXsrfTokenKey)
-                {
-                    HttpOnly = true,
-                    Value = _antiXsrfTokenValue
-                };
-                if (FormsAuthentication.RequireSSL && Request.IsSecureConnection)
-                {
-                    responseCookie.Secure = true;
-                }
-                Response.Cookies.Set(responseCookie);
             }
 
-            Page.PreLoad += master_Page_PreLoad;
+            Page.PreLoad += master_Page_PreLoad;*/
         }
 
         protected void master_Page_PreLoad(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+           /* if (!IsPostBack)
             {
                 // Set Anti-XSRF token
                 ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
@@ -64,7 +48,7 @@ namespace SE_IMDB_OPDRACHT
                 {
                     throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
                 }
-            }
+            }*/
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -86,6 +70,11 @@ namespace SE_IMDB_OPDRACHT
         {
             Session["searchresult"] = dbconn.SearchIMDB(TextBox1.Text);
             Response.Redirect("~/about.aspx");
+        }
+
+        protected string GetUserName()
+        {
+            return (string)(Session["LoggedInUserName"]);
         }
     }
 

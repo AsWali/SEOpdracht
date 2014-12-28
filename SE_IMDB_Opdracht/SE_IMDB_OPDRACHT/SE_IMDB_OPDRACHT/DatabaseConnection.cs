@@ -5,6 +5,7 @@ using System.Web;
 using Oracle.DataAccess.Client;
 using Oracle.DataAccess.Types;
 using System.Configuration;
+using System.Data;
 
 
 namespace SE_IMDB_OPDRACHT
@@ -78,9 +79,6 @@ namespace SE_IMDB_OPDRACHT
             }
         }
 
-
-
-
         /// <summary>
         //Try logging in
         /// </summary>
@@ -105,10 +103,6 @@ namespace SE_IMDB_OPDRACHT
             return false;
         }
 
-
-        /// <summary>
-        //Try logging in
-        /// </summary>
         public List<string> SearchIMDB(string searchterm)
         {
             List<string> searchresults = new List<string>();
@@ -141,6 +135,65 @@ namespace SE_IMDB_OPDRACHT
             return searchresults;
         }
 
+         public DataSet GetDataMovie(int pagenmr)
+        {
+
+
+            string queryString = "select b.name, a.characternaam from op_movie_acteur a, Op_imdbpage b where a.PAGENMRACTEUR = b.PAGENMR  and a.PAGENMRMOVIE = :un";
+            OracleCommand cmd = new OracleCommand(queryString, this.conn);
+            cmd.Parameters.Add("un", pagenmr);
+            OracleDataAdapter adapter = new OracleDataAdapter(cmd);
+            
+
+
+            this.conn.Open();
+
+
+            DataSet ds = new DataSet();
+
+            try
+            {
+
+
+                // Fill the DataSet.
+                adapter.Fill(ds);
+
+            }
+            catch (OracleException e)
+            {
+                // The connection failed. Display an error message.
+                
+
+            }
+             finally
+            {
+                conn.Close();
+            }
+
+            return ds;
+
+        }
+
+        public int GetPageNmr(string name)
+         {
+            int pagenmr = 0;
+            string queryString = "select pagenmr from OP_imdbpage where name= :un";
+            OracleCommand cmd = new OracleCommand(queryString, this.conn);
+            cmd.Parameters.Add("un", name);
+
+            this.conn.Open();
+
+            using (OracleDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    pagenmr = reader.GetInt32(0);
+                }
+            }
+            this.conn.Close();
+
+            return pagenmr;
+         }
 
     }
 }

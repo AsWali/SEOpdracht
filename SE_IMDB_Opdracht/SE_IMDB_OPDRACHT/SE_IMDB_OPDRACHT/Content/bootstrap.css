@@ -409,7 +409,21 @@ p {
   font-size: 16.099999999999998px;
   font-weight: 200;
   line-height: 1.4;
+    width: 448px;
+    height: 72px;
 }
+
+.lead2 {
+  margin-bottom: 20px;
+  font-size: 16.099999999999998px;
+  font-weight: 200;
+  line-height: 1.4;
+    width: 448px;
+    height: 72px;
+}
+
+
+
 
 @media (min-width: 768px) {
   .lead {
@@ -708,6 +722,7 @@ address {
   margin-bottom: 20px;
   font-style: normal;
   line-height: 1.428571429;
+    width: 152px;
 }
 
 code,
@@ -4925,6 +4940,38 @@ a.list-group-item.active > .badge,
 .nav-pills > li > a > .badge {
   margin-left: 3px;
 }
+
+
+.PageInfo {
+      position: relative;
+  color: inherit;
+  background-color: #eeeeee;
+    width: 20%;
+    height: 170px;
+}
+
+.PageInfo2 {
+      position: relative;
+  color: inherit;
+  background-color: #eeeeee;
+    width: 78%;
+    height: 168px;
+    top: -173px;
+    left: 168px;
+}
+
+.PageInfo3 {
+      position: relative;
+  color: inherit;
+  background-color: #eeeeee;
+    top: -140px;
+    left: 2px;
+    height: 337px;
+    width: 776px;
+}
+
+
+
 
 .jumbotron {
   padding: 30px;
