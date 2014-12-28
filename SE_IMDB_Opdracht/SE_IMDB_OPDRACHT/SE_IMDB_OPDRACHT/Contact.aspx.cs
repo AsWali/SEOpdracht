@@ -11,12 +11,13 @@ namespace SE_IMDB_OPDRACHT
     public partial class Contact : Page
     {
         DatabaseConnection dbconn = new DatabaseConnection();
+        private int pagenmr;
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
-                int pagenmr = (int)(Session["pagenmr"]);
+                pagenmr = (int)(Session["pagenmr"]);
 
                 // Run the query and bind the resulting DataSet
                 // to the GridView control.
@@ -32,7 +33,8 @@ namespace SE_IMDB_OPDRACHT
                 }
                 
             }
-
+            Image1.ImageUrl = "/Content/Images/" + dbconn.GetImage(pagenmr);
+            DescriptionMessage.Text = dbconn.GetDescription(pagenmr);
         }
 
        

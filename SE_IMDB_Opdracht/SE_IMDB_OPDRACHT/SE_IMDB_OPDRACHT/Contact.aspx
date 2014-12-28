@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="Contact" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="SE_IMDB_OPDRACHT.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
-    <h3>Your contact page.</h3>
+    <h2></h2>
+    <h3></h3>
   
         
             <div class="PageInfo">
@@ -10,7 +10,9 @@
             </div>
 
             <div class="PageInfo2">
-                <p class="lead2">eyeyey</p>
+                    <p class="lead">
+                     <asp:Literal runat="server" ID="DescriptionMessage" />
+                    </p>
             </div>
 
                 <div class="PageInfo3">

@@ -145,33 +145,25 @@ namespace SE_IMDB_OPDRACHT
             OracleDataAdapter adapter = new OracleDataAdapter(cmd);
             
 
-
             this.conn.Open();
-
 
             DataSet ds = new DataSet();
 
             try
             {
-
-
                 // Fill the DataSet.
                 adapter.Fill(ds);
 
             }
             catch (OracleException e)
             {
-                // The connection failed. Display an error message.
-                
-
+                // The connection failed. Display an error message            
             }
              finally
             {
                 conn.Close();
             }
-
             return ds;
-
         }
 
         public int GetPageNmr(string name)
@@ -195,5 +187,67 @@ namespace SE_IMDB_OPDRACHT
             return pagenmr;
          }
 
+        public string GetDescription(int pagenmr)
+        {
+            string description = "";
+            string queryString = "select description from op_imdbpage where pagenmr=:un";
+            OracleCommand cmd = new OracleCommand(queryString, this.conn);
+            cmd.Parameters.Add("un", pagenmr);
+
+            this.conn.Open();
+
+            using (OracleDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    description = reader.GetString(0);
+                }
+            }
+            this.conn.Close();
+
+            return description;
+         }
+
+        public string GetImage(int pagenmr)
+        {
+            string image = "";
+            string queryString = "select image from op_imdbpage where pagenmr=:un";
+            OracleCommand cmd = new OracleCommand(queryString, this.conn);
+            cmd.Parameters.Add("un", pagenmr);
+
+            this.conn.Open();
+
+            using (OracleDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    image = reader.GetString(0);
+                }
+            }
+            this.conn.Close();
+
+            return image;
+        }
+
+        public string GetPageKind(int pagenmr)
+        {
+            string pagekind = "";
+            string queryString = "select image from op_imdbpage where pagenmr=:un";
+            OracleCommand cmd = new OracleCommand(queryString, this.conn);
+            cmd.Parameters.Add("un", pagenmr);
+
+            this.conn.Open();
+
+            using (OracleDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    pagekind = reader.GetString(0);
+                }
+            }
+            this.conn.Close();
+
+            return pagekind;
+        }
     }
 }
