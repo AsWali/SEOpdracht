@@ -6,7 +6,7 @@
   
         
             <div class="PageInfo">
-                <asp:Image ID="Image1" runat="server" Height="164px" />
+                <asp:Image ID="Image1" runat="server" Height="229px" Width="176px" />
             </div>
 
             <div class="PageInfo2">

@@ -12,16 +12,28 @@ namespace SE_IMDB_OPDRACHT
     {
         DatabaseConnection dbconn = new DatabaseConnection();
         private int pagenmr;
+        DataSet ds = new DataSet();
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
-            {
+            {               
                 pagenmr = (int)(Session["pagenmr"]);
-
-                // Run the query and bind the resulting DataSet
-                // to the GridView control.
-                DataSet ds = dbconn.GetDataMovie(pagenmr);
+                if (dbconn.GetPageKind(pagenmr) == "MOVIE")
+                {
+                    ds = dbconn.GetDataMovie(pagenmr);
+                }
+                else if (dbconn.GetPageKind(pagenmr) == "SHOW")
+                {
+                    ds = dbconn.GetDataShow(pagenmr);
+                }
+                else if (dbconn.GetPageKind(pagenmr) == "ACTEUR")
+                {
+                    ds = dbconn.GetDataActeurShow(pagenmr);
+                    DataSet data2 = dbconn.GetDataActeurMovie(pagenmr);
+                    ds.Merge(data2);                
+                }
+                
                 if (ds.Tables.Count > 0)
                 {
                     AuthorsGridView.DataSource = ds;

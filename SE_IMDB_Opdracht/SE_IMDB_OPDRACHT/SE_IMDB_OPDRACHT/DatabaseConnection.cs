@@ -135,10 +135,8 @@ namespace SE_IMDB_OPDRACHT
             return searchresults;
         }
 
-         public DataSet GetDataMovie(int pagenmr)
+        public DataSet GetDataMovie(int pagenmr)
         {
-
-
             string queryString = "select b.name, a.characternaam from op_movie_acteur a, Op_imdbpage b where a.PAGENMRACTEUR = b.PAGENMR  and a.PAGENMRMOVIE = :un";
             OracleCommand cmd = new OracleCommand(queryString, this.conn);
             cmd.Parameters.Add("un", pagenmr);
@@ -166,6 +164,92 @@ namespace SE_IMDB_OPDRACHT
             return ds;
         }
 
+         public DataSet GetDataShow(int pagenmr)
+         {
+             string queryString = "select b.name, a.characternaam from op_tvshow_acteur a, Op_imdbpage b where a.PAGENMRACTEUR = b.PAGENMR  and a.PAGENMRSHOW =  :un";
+             OracleCommand cmd = new OracleCommand(queryString, this.conn);
+             cmd.Parameters.Add("un", pagenmr);
+             OracleDataAdapter adapter = new OracleDataAdapter(cmd);
+
+
+             this.conn.Open();
+
+             DataSet ds = new DataSet();
+
+             try
+             {
+                 // Fill the DataSet.
+                 adapter.Fill(ds);
+
+             }
+             catch (OracleException e)
+             {
+                 // The connection failed. Display an error message            
+             }
+             finally
+             {
+                 conn.Close();
+             }
+             return ds;
+         }
+
+         public DataSet GetDataActeurShow(int pagenmr)
+         {
+             string queryString = "select c.NAME, a.CHARACTERNAAM from op_tvshow_acteur a,  op_imdbpage c where c.PAGENMR = a.PAGENMRSHOW and a.PAGENMRACTEUR= :un";
+             OracleCommand cmd = new OracleCommand(queryString, this.conn);
+             cmd.Parameters.Add("un", pagenmr);
+             OracleDataAdapter adapter = new OracleDataAdapter(cmd);
+
+
+             this.conn.Open();
+
+             DataSet ds = new DataSet();
+
+             try
+             {
+                 // Fill the DataSet.
+                 adapter.Fill(ds);
+
+             }
+             catch (OracleException e)
+             {
+                 // The connection failed. Display an error message            
+             }
+             finally
+             {
+                 conn.Close();
+             }
+             return ds;
+         }
+
+         public DataSet GetDataActeurMovie(int pagenmr)
+         {
+             string queryString = "select c.NAME, a.CHARACTERNAAM from op_movie_acteur a,  op_imdbpage c where c.PAGENMR = a.PAGENMRMOVIE and a.PAGENMRACTEUR= :un";
+             OracleCommand cmd = new OracleCommand(queryString, this.conn);
+             cmd.Parameters.Add("un", pagenmr);
+             OracleDataAdapter adapter = new OracleDataAdapter(cmd);
+
+
+             this.conn.Open();
+
+             DataSet ds = new DataSet();
+
+             try
+             {
+                 // Fill the DataSet.
+                 adapter.Fill(ds);
+
+             }
+             catch (OracleException e)
+             {
+                 // The connection failed. Display an error message            
+             }
+             finally
+             {
+                 conn.Close();
+             }
+             return ds;
+         }
         public int GetPageNmr(string name)
          {
             int pagenmr = 0;
@@ -232,7 +316,7 @@ namespace SE_IMDB_OPDRACHT
         public string GetPageKind(int pagenmr)
         {
             string pagekind = "";
-            string queryString = "select image from op_imdbpage where pagenmr=:un";
+            string queryString = "select pagekind from op_imdbpage where pagenmr=:un";
             OracleCommand cmd = new OracleCommand(queryString, this.conn);
             cmd.Parameters.Add("un", pagenmr);
 
