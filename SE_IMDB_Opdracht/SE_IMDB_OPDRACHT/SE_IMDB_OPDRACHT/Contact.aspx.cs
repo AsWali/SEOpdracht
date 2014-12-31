@@ -49,21 +49,12 @@ namespace SE_IMDB_OPDRACHT
                     Message.Text = "Unable to connect to the database.";
                 }
 
-                if (dbconn.AlreadyRated(pagenmr, username) != -1)
-                {
-                    tbrating.Text = dbconn.AlreadyRated(pagenmr, username).ToString();
-                    alreadyrated = true;
-                    ErrorMessage.Text = "Already Rated";
-                }
-                else
-                {
-                    alreadyrated = false;
-                }
-                Refresh();
+
+               
             }
 
-            
-            
+
+            Refresh();
         }
 
        protected void Refresh()
@@ -79,6 +70,22 @@ namespace SE_IMDB_OPDRACHT
            Image1.ImageUrl = "/Content/Images/" + dbconn.GetImage(pagenmr);
            DescriptionMessage.Text = dbconn.GetDescription(pagenmr);
            ErrorMessage.Text = string.Empty;
+           if(username != null)
+           {
+               if (dbconn.AlreadyRated(pagenmr, username) != -1)
+               {
+                   if (!IsPostBack)
+                   {
+                       tbrating.Text = dbconn.AlreadyRated(pagenmr, username).ToString();
+                   }
+                   alreadyrated = true;
+                   ErrorMessage.Text = "Already Rated";
+               }
+               else
+               {
+                   alreadyrated = false;
+               }
+           }
        }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -88,22 +95,30 @@ namespace SE_IMDB_OPDRACHT
 
         protected void btnrate_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(tbrating.Text) > 10 || Convert.ToInt32(tbrating.Text) < 1)
+            if(username == null)
             {
-                ErrorMessage.Text = "Pick a number between 1 and 10 !";
+                ErrorMessage.Text = "Have to be logged in to rate !";
             }
             else
             {
-                if (alreadyrated == true)
+                if (Convert.ToInt32(tbrating.Text) > 10 || Convert.ToInt32(tbrating.Text) < 1)
                 {
-                    dbconn.UpdateRatePage(pagenmr, Convert.ToInt32(tbrating.Text), username);
-                    tbrating.Text = string.Empty;
+                    ErrorMessage.Text = "Pick a number between 1 and 10 !";
                 }
                 else
                 {
-                    dbconn.RatePage(pagenmr, Convert.ToInt32(tbrating.Text), username);
-                    tbrating.Text = string.Empty;
+                    if (alreadyrated == true)
+                    {
+                        dbconn.UpdateRatePage(pagenmr, Convert.ToInt32(tbrating.Text), username);
+                        tbrating.Text = string.Empty;
+                    }
+                    else
+                    {
+                        dbconn.RatePage(pagenmr, Convert.ToInt32(tbrating.Text), username);
+                        tbrating.Text = string.Empty;
+                    }
                 }
+                tbrating.Text = dbconn.AlreadyRated(pagenmr, username).ToString();
                 Refresh();
             }
         }

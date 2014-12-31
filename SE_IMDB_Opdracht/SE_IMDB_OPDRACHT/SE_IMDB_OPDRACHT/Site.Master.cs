@@ -17,13 +17,13 @@ namespace SE_IMDB_OPDRACHT
 
         protected void Page_Init(object sender, EventArgs e)
         {
+            username = (string)Session["LoggedInUserName"];
             if (!IsPostBack)
             {
                 if (Session["LoggedInUserName"] != null)
-                {
-                    username = (string)Session["LoggedInUserName"];
+                { 
                     regman.InnerText = username;
-                    regman.HRef = "~/Manage";
+                    regman.HRef = "Account/Manage";
                     loginout.InnerText = "Sign Off";
                 }
             }
@@ -45,6 +45,7 @@ namespace SE_IMDB_OPDRACHT
         }
 
 
+
         protected void TryLogOut(object sender, EventArgs e)
         {
             if (loginout.InnerText == "Sign Off")
@@ -55,6 +56,18 @@ namespace SE_IMDB_OPDRACHT
             else if(loginout.InnerText == "Log in")
             {
                 Response.Redirect("~/Account/Login.aspx");
+            }
+        }
+
+        protected void ProfileView(object sender, EventArgs e)
+        {
+            if (regman.InnerText == username)
+            {
+                Response.Redirect("~/Account/Manage.aspx");
+            }
+            else if (regman.InnerText == "Register")
+            {
+                Response.Redirect("~/Account/Register.aspx");
             }
         }
 

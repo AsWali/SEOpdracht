@@ -533,6 +533,7 @@ h1,
 h2,
 .h2 {
   font-size: 30px;
+    height: 89px;
 }
 
 h3,
@@ -4965,8 +4966,8 @@ a.list-group-item.active > .badge,
   color: inherit;
     width: 77%;
     height: 256px;
-    top: -318px;
-    left: 252px;
+    top: -311px;
+    left: 240px;
 }
 
 .PageInfo3 {
