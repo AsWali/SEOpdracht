@@ -31,13 +31,22 @@ namespace SE_IMDB_OPDRACHT {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// loginview1 control.
+        /// regman control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginView loginview1;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor regman;
+        
+        /// <summary>
+        /// loginout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor loginout;
         
         /// <summary>
         /// MainContent control.

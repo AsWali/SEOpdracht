@@ -162,9 +162,11 @@ button,
 input,
 select,
 textarea {
-  margin: 0 0 0 18px;
   font-family: inherit;
   font-size: 100%;
+    margin-left: 18px;
+    margin-right: 0;
+    margin-bottom: 0;
 }
 
 button,
@@ -4945,26 +4947,33 @@ a.list-group-item.active > .badge,
 .PageInfo {
       position: relative;
   color: inherit;
-    width: 18%;
-    height: 282px;
+    width: 26%;
+    height: 246px;
     top: 0px;
     left: 0px;
 }
 
+.PageInfo4 {
+      position: relative;
+  color: inherit;
+    width: 29%;
+}
+
+
 .PageInfo2 {
       position: relative;
   color: inherit;
-    width: 80%;
-    height: 265px;
-    top: -269px;
-    left: 228px;
+    width: 77%;
+    height: 256px;
+    top: -318px;
+    left: 252px;
 }
 
 .PageInfo3 {
       position: relative;
   color: inherit;
-    top: -191px;
-    left: 5px;
+    top: -213px;
+    left: -3px;
     height: 337px;
     width: 776px;
 }

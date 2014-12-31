@@ -11,20 +11,18 @@ namespace SE_IMDB_OPDRACHT.Account
         DatabaseConnection dbconn = new DatabaseConnection();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["userName"] != null)
+            if (!IsPostBack)
             {
-               HttpCookie aCookie = Request.Cookies["userName"];
-               UserName.Text = Server.HtmlEncode(aCookie.Value);
+                if (Request.Cookies["userName"] != null)
+                {
+                    HttpCookie aCookie = Request.Cookies["userName"];
+                    UserName.Text = Server.HtmlEncode(aCookie.Value);
+                }
             }
         }
 
         protected void LogIn(object sender, EventArgs e)
         {
-            if(RememberMe.Checked == true)
-            {
-
-            }
-
 
             if (dbconn.TryLogin(UserName.Text, Password.Text))
             {

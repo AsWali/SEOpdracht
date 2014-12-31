@@ -333,5 +333,113 @@ namespace SE_IMDB_OPDRACHT
 
             return pagekind;
         }
+
+        public int GetRating(int page)
+        {
+            int rating = 0;
+            string queryString = "select AVG(Rating) from op_rat_imdbpage where pagenmr=:un";
+            OracleCommand cmd = new OracleCommand(queryString, this.conn);
+            cmd.Parameters.Add("un", page);
+
+            this.conn.Open();
+            try
+            {
+                using (OracleDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            rating = reader.GetInt32(0);
+                        }
+                    }
+                }
+                
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+
+            return rating;
+        }
+
+
+        public int AlreadyRated(int page, string email)
+        {
+            int rating = -1;
+            string queryString = "select Rating from op_rat_imdbpage where pagenmr=:un and Email=:email";
+            OracleCommand cmd = new OracleCommand(queryString, this.conn);
+            cmd.Parameters.Add("un", page);
+            cmd.Parameters.Add("email", email);
+
+            this.conn.Open();
+
+            using (OracleDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    rating = reader.GetInt32(0);
+                }
+            }
+            this.conn.Close();
+
+            return rating;
+
+        }
+
+        
+        public void RatePage(int pagenmr, int rating, string email)
+        {
+            try
+            {
+                OracleCommand cmd = this.conn.CreateCommand();
+                cmd.CommandText = "INSERT INTO OP_RAT_IMDBPAGE VALUES (:email,:pg, :rt)";
+                cmd.Parameters.Add("email", email);
+                cmd.Parameters.Add("pg", pagenmr);
+                cmd.Parameters.Add("rt", rating);
+
+                this.conn.Open();
+                cmd.ExecuteReader();
+            }
+            catch (OracleException e)
+            {
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+
+        }
+
+        public void UpdateRatePage(int pagenmr, int rating, string email)
+        {
+            try
+            {
+                OracleCommand cmd = this.conn.CreateCommand();
+                cmd.CommandText = "UPDATE OP_RAT_IMDBPAGE SET Rating=:rt WHERE Email=:email and pagenmr=:pg";
+                cmd.Parameters.Add("rt", rating);               
+                cmd.Parameters.Add("email", email);
+                cmd.Parameters.Add("pg", pagenmr);
+
+                conn.Open();
+                cmd.ExecuteReader();
+            }
+            catch (OracleException e)
+            {
+
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+        }
+
+
+
     }
 }

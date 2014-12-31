@@ -12,58 +12,50 @@ namespace SE_IMDB_OPDRACHT
     public partial class SiteMaster : MasterPage
     {
         DatabaseConnection dbconn = new DatabaseConnection();
-        private const string AntiXsrfTokenKey = "__AntiXsrfToken";
-        private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
-        private string _antiXsrfTokenValue;
+        private string username;
+       
 
         protected void Page_Init(object sender, EventArgs e)
         {
-           /* if (Session["LoggedInUserName"] == null)
+            if (!IsPostBack)
             {
-                // Use the Anti-XSRF token from the cookie
-                _antiXsrfTokenValue = (string)(Session["LoggedInUserName"]);
-                Page.ViewStateUserKey = _antiXsrfTokenValue;
+                if (Session["LoggedInUserName"] != null)
+                {
+                    username = (string)Session["LoggedInUserName"];
+                    regman.InnerText = username;
+                    regman.HRef = "~/Manage";
+                    loginout.InnerText = "Sign Off";
+                }
             }
-            else
-            {
-                // Generate a new Anti-XSRF token and save to the cookie
-            }
-
-            Page.PreLoad += master_Page_PreLoad;*/
         }
 
         protected void master_Page_PreLoad(object sender, EventArgs e)
         {
-           /* if (!IsPostBack)
-            {
-                // Set Anti-XSRF token
-                ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
-                ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
-            }
-            else
-            {
-                // Validate the Anti-XSRF token
-                if ((string)ViewState[AntiXsrfTokenKey] != _antiXsrfTokenValue
-                    || (string)ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? String.Empty))
-                {
-                    throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
-                }
-            }*/
+
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
-        {
-            Context.GetOwinContext().Authentication.SignOut();
+            
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            
+        }
 
+
+        protected void TryLogOut(object sender, EventArgs e)
+        {
+            if (loginout.InnerText == "Sign Off")
+            {
+                Session["LoggedInUserName"] = null;
+                Response.Redirect("~/Default.aspx");
+            }
+            else if(loginout.InnerText == "Log in")
+            {
+                Response.Redirect("~/Account/Login.aspx");
+            }
         }
 
         protected void Button1_Click1(object sender, EventArgs e)
