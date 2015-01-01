@@ -392,16 +392,122 @@ namespace SE_IMDB_OPDRACHT
 
         }
 
-        
-        public void RatePage(int pagenmr, int rating, string email)
+        public void LastViewed(int pagenmr, string email, DateTime viewdate)
         {
             try
             {
                 OracleCommand cmd = this.conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO OP_RAT_IMDBPAGE VALUES (:email,:pg, :rt)";
+                cmd.CommandText = "INSERT INTO OP_Rec_IMDBPAGE VALUES (:email,:pg, :tm)";
+                cmd.Parameters.Add("email", email);
+                cmd.Parameters.Add("pg", pagenmr);
+                cmd.Parameters.Add("tm", viewdate);
+
+                this.conn.Open();
+                cmd.ExecuteReader();
+            }
+            catch (OracleException e)
+            {
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+
+        }
+        
+        public void DeleteFromViewed(int pagenmr, string email)
+        {
+            try
+            {
+                OracleCommand cmd = this.conn.CreateCommand();
+                cmd.CommandText = "delete from op_rec_imdbpage where email=:email and pagenmr=:pg";
+                cmd.Parameters.Add("email", email);
+                cmd.Parameters.Add("pg", pagenmr);
+
+                this.conn.Open();
+                cmd.ExecuteReader();
+            }
+            catch (OracleException e)
+            {
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+        }
+
+        public List<string> ProfileRating(string email)
+        {
+            List<string> profilrating = new List<string>();
+            try
+            {
+                OracleCommand cmd = this.conn.CreateCommand();
+                cmd.CommandText = "select b.IMAGE from op_rat_imdbpage a , op_imdbpage b where a.PAGENMR = b.PAGENMR and a.EMAIL=:email ORDER BY a.VIEWDATE ASC";
+                cmd.Parameters.Add("email", email);
+
+                this.conn.Open();
+                cmd.ExecuteReader();
+                using (OracleDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        profilrating.Add(reader.GetString(0));
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                this.conn.Close();
+               
+            }
+            return profilrating;
+        }
+
+        public List<string> ProfileRatingName(string email)
+        {
+            List<string> profilrating = new List<string>();
+            try
+            {
+                OracleCommand cmd = this.conn.CreateCommand();
+                cmd.CommandText = "select b.name from op_rat_imdbpage a , op_imdbpage b where a.PAGENMR = b.PAGENMR and a.EMAIL=:email ORDER BY a.VIEWDATE DESC";
+                cmd.Parameters.Add("email", email);
+
+                this.conn.Open();
+                cmd.ExecuteReader();
+                using (OracleDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        profilrating.Add(reader.GetString(0));
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                this.conn.Close();
+
+            }
+            return profilrating;
+        }
+
+        public void RatePage(int pagenmr, int rating, string email, DateTime viewdate)
+        {
+            try
+            {
+                OracleCommand cmd = this.conn.CreateCommand();
+                cmd.CommandText = "INSERT INTO OP_RAT_IMDBPAGE VALUES (:email,:pg, :rt, :tm)";
                 cmd.Parameters.Add("email", email);
                 cmd.Parameters.Add("pg", pagenmr);
                 cmd.Parameters.Add("rt", rating);
+                cmd.Parameters.Add("'tm", viewdate);
 
                 this.conn.Open();
                 cmd.ExecuteReader();
@@ -439,7 +545,56 @@ namespace SE_IMDB_OPDRACHT
             }
         }
 
+        public string GetJoinDate(string email)
+        {
+            string joindate = "";
+            string queryString = "select joindate from op_ibaccount where EmailAdres=:un";
+            OracleCommand cmd = new OracleCommand(queryString, this.conn);
+            cmd.Parameters.Add("un", email);
 
+            this.conn.Open();
 
+            using (OracleDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    joindate = reader.GetDateTime(0).ToShortDateString();
+                }
+            }
+            this.conn.Close();
+
+            return joindate;
+
+        }
+
+        public List<string> ViewingHistory(string email)
+        {
+            List<string> history = new List<string>();
+            try
+            {
+                string queryString = "select b.name from op_rec_imdbpage a, op_imdbpage b where a.pagenmr = b.pagenmr and email=:un  ORDER BY a.VIEWDATE DESC";
+
+                OracleCommand cmd = new OracleCommand(queryString, this.conn);
+                cmd.Parameters.Add(":un", email);
+                this.conn.Open();
+
+                using (OracleDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        history.Add(reader.GetString(0));
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+            return history;
+        }
     }
 }

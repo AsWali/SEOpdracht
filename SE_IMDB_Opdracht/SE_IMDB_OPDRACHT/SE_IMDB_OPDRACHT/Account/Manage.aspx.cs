@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,43 +8,64 @@ using SE_IMDB_OPDRACHT.Models;
 
 namespace SE_IMDB_OPDRACHT.Account
 {
-    public partial class Manage : System.Web.UI.Page
+    public partial class Manage : Page
     {
-        protected string SuccessMessage
-        {
-            get;
-            private set;
-        }
-
-        protected bool CanRemoveExternalLogins
-        {
-            get;
-            private set;
-        }
+        DatabaseConnection dbconn = new DatabaseConnection();
+        private string username;
+        private int lastrated;
+        private int pagenmr;
+        private List<string> viewinghistory;
+        private List<string> ratingimages;
 
 
-        protected void Page_Load()
+        protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Request["__EVENTARGUMENT"] != null && Request["__EVENTARGUMENT"] == "move")
             {
-              
+                pagenmr = dbconn.GetPageNmr(ListBox1.SelectedItem.ToString());
+                Session["pagenmr"] = pagenmr;
+                Response.Redirect("~/Contact.aspx");
             }
+            ListBox1.Attributes.Add("ondblclick", ClientScript.GetPostBackEventReference(ListBox1, "move"));
+
+
+            username = (string)Session["LoggedInUserName"];           
+            ratingimages = dbconn.ProfileRating(username);
+            lastrated = ratingimages.Count();
+            if (lastrated > 0)
+            {
+                try
+                {
+                    Image1.ImageUrl = "/Content/Images/" + ratingimages[lastrated - 1];
+                    Image2.ImageUrl = "/Content/Images/" + ratingimages[lastrated - 2];
+                    Image3.ImageUrl = "/Content/Images/" + ratingimages[lastrated - 3];
+                    Image4.ImageUrl = "/Content/Images/" + ratingimages[lastrated - 4];
+                    Image5.ImageUrl = "/Content/Images/" + ratingimages[lastrated - 5];
+                }
+                catch
+                {
+
+                }
+            }
+            viewinghistory = dbconn.ViewingHistory(username);
+            foreach(string pag in viewinghistory)
+            {
+                ListBox1.Items.Add(pag);
+            }
+            lbusername.Text = username;
+            lbjoindate.Text = "IMDb member since " + dbconn.GetJoinDate(username);
         }
 
-        protected void ChangePassword_Click(object sender, EventArgs e)
+        protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (IsValid)
-            {
 
-            }
         }
 
-        protected void SetPassword_Click(object sender, EventArgs e)
+        protected void Button2_Click(object sender, EventArgs e)
         {
-            if (IsValid)
-            {
-
-            }
+            Session["aboutlabel"] = "Pages Rated !";
+            Session["searchresult"] = dbconn.ProfileRatingName(username);
+            Response.Redirect("~/about.aspx");
         }
 
 

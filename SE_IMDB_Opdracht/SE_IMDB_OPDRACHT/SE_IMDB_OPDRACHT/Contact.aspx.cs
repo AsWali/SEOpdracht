@@ -34,6 +34,8 @@ namespace SE_IMDB_OPDRACHT
                 }
                 else if (dbconn.GetPageKind(pagenmr) == "ACTEUR")
                 {
+                    btnrate.Visible = false;
+                    tbrating.Visible = false;
                     ds = dbconn.GetDataActeurShow(pagenmr);
                     DataSet data2 = dbconn.GetDataActeurMovie(pagenmr);
                     ds.Merge(data2);                
@@ -72,6 +74,8 @@ namespace SE_IMDB_OPDRACHT
            ErrorMessage.Text = string.Empty;
            if(username != null)
            {
+               dbconn.DeleteFromViewed(pagenmr, username);
+               dbconn.LastViewed(pagenmr, username, DateTime.Now);
                if (dbconn.AlreadyRated(pagenmr, username) != -1)
                {
                    if (!IsPostBack)
@@ -114,7 +118,7 @@ namespace SE_IMDB_OPDRACHT
                     }
                     else
                     {
-                        dbconn.RatePage(pagenmr, Convert.ToInt32(tbrating.Text), username);
+                        dbconn.RatePage(pagenmr, Convert.ToInt32(tbrating.Text), username, DateTime.Now);
                         tbrating.Text = string.Empty;
                     }
                 }

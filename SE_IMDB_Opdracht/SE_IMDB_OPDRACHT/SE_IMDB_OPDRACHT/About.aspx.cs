@@ -13,6 +13,7 @@ namespace SE_IMDB_OPDRACHT
         private int pagenmr;
         protected void Page_Load(object sender, EventArgs e)
         {
+            Label1.Text = (string)(Session["aboutlabel"]);
             if (Request["__EVENTARGUMENT"] != null && Request["__EVENTARGUMENT"] == "move")
             {   
                 pagenmr =  dbconn.GetPageNmr(ListBox1.SelectedItem.ToString());

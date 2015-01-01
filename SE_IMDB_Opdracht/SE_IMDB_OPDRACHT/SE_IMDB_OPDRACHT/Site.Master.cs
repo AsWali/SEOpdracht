@@ -73,6 +73,7 @@ namespace SE_IMDB_OPDRACHT
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
+            Session["aboutlabel"] = "Searchresults :";
             Session["searchresult"] = dbconn.SearchIMDB(TextBox1.Text);
             Response.Redirect("~/about.aspx");
         }
