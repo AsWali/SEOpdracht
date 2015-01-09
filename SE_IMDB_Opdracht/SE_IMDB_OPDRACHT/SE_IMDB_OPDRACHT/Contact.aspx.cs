@@ -126,5 +126,10 @@ namespace SE_IMDB_OPDRACHT
                 Refresh();
             }
         }
+
+        protected void AuthorsGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

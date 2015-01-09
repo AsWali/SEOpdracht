@@ -41,7 +41,7 @@
 
                     <asp:gridview id="AuthorsGridView" 
                           autogeneratecolumns="true" 
-                      runat="server" Height="259px" Width="355px">
+                      runat="server" Height="259px" Width="355px" OnSelectedIndexChanged="AuthorsGridView_SelectedIndexChanged">
                      </asp:gridview>
 
                
