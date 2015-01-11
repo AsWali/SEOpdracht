@@ -15,6 +15,12 @@ namespace SE_IMDB_OPDRACHT
         private string username;
         private bool alreadyrated;
         DataSet ds = new DataSet();
+
+        /// <summary>
+        /// Gets the pagenmr and the username from sessions. If the page is from a actor it hides the rate button and textbox.
+        /// And fills the gridview with the actor rolls in movies/shows.
+        /// 
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             pagenmr = (int)(Session["pagenmr"]);
@@ -59,6 +65,11 @@ namespace SE_IMDB_OPDRACHT
             Refresh();
         }
 
+
+        /// <summary>
+        /// Gets the rating for the movie/show. And gets the image location and description for the page.
+        /// And if your logged in it adds it to your history.
+        /// </summary>
        protected void Refresh()
        {
            if (dbconn.GetPageKind(pagenmr) == "MOVIE")
@@ -97,6 +108,10 @@ namespace SE_IMDB_OPDRACHT
 
         }
 
+        /// <summary>
+        /// If you are not logged in you will get a error message. 
+        /// The number has to be a valid number and it adds it to the database.
+        /// </summary>
         protected void btnrate_Click(object sender, EventArgs e)
         {
             if(username == null)

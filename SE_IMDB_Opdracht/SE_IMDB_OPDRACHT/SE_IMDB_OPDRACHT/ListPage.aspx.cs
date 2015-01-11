@@ -11,6 +11,11 @@ namespace SE_IMDB_OPDRACHT
     {
         DatabaseConnection dbconn = new DatabaseConnection();
         private int pagenmr;
+
+        /// <summary>
+        /// Shows the search results
+        /// Shows the users ratings list.
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             Label1.Text = (string)(Session["aboutlabel"]);
@@ -18,7 +23,7 @@ namespace SE_IMDB_OPDRACHT
             {   
                 pagenmr =  dbconn.GetPageNmr(ListBox1.SelectedItem.ToString());
                 Session["pagenmr"] = pagenmr;
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             ListBox1.Attributes.Add("ondblclick", ClientScript.GetPostBackEventReference(ListBox1, "move"));
 

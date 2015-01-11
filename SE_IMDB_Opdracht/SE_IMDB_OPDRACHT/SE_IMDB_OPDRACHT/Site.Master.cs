@@ -130,7 +130,7 @@ namespace SE_IMDB_OPDRACHT
         {
             Session["aboutlabel"] = "Searchresults :";
             Session["searchresult"] = dbconn.SearchIMDB(TextBox1.Text);
-            Response.Redirect("~/about.aspx");
+            Response.Redirect("~/ListPage.aspx");
         }
 
         protected string GetUserName()
@@ -143,7 +143,7 @@ namespace SE_IMDB_OPDRACHT
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(history[hist - 1]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -156,7 +156,7 @@ namespace SE_IMDB_OPDRACHT
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(history[hist - 2]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -169,7 +169,7 @@ namespace SE_IMDB_OPDRACHT
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(history[hist - 3]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -182,7 +182,7 @@ namespace SE_IMDB_OPDRACHT
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(history[hist - 4]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -195,7 +195,7 @@ namespace SE_IMDB_OPDRACHT
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(history[hist - 5]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -208,7 +208,7 @@ namespace SE_IMDB_OPDRACHT
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(history[hist - 6]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -221,7 +221,7 @@ namespace SE_IMDB_OPDRACHT
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(history[hist - 7]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -234,7 +234,7 @@ namespace SE_IMDB_OPDRACHT
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(history[hist - 8]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -247,7 +247,7 @@ namespace SE_IMDB_OPDRACHT
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(history[hist - 9]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -260,7 +260,7 @@ namespace SE_IMDB_OPDRACHT
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(history[hist - 10]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -273,7 +273,7 @@ namespace SE_IMDB_OPDRACHT
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(history[hist - 11]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -286,7 +286,7 @@ namespace SE_IMDB_OPDRACHT
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(history[hist - 12]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {

@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SE_IMDB_OPDRACHT", "SE_IMDB_OPDRACHT\SE_IMDB_OPDRACHT.csproj", "{90986A5F-F88E-4A70-A0C0-3103573C1081}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTester", "UnitTester\UnitTester.csproj", "{75F48BFF-0CF5-42DC-9EBB-60C3A73ABECA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{90986A5F-F88E-4A70-A0C0-3103573C1081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90986A5F-F88E-4A70-A0C0-3103573C1081}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90986A5F-F88E-4A70-A0C0-3103573C1081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75F48BFF-0CF5-42DC-9EBB-60C3A73ABECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75F48BFF-0CF5-42DC-9EBB-60C3A73ABECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75F48BFF-0CF5-42DC-9EBB-60C3A73ABECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75F48BFF-0CF5-42DC-9EBB-60C3A73ABECA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

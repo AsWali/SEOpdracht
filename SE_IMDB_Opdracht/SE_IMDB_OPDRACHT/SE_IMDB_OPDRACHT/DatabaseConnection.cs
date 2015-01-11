@@ -80,7 +80,7 @@ namespace SE_IMDB_OPDRACHT
         }
 
         /// <summary>
-        //Try logging in
+        //Try logging in, kijk of de username en password een row returnt. Zo ja return true.
         /// </summary>
         public bool TryLogin(string username, string password)
         {
@@ -103,6 +103,9 @@ namespace SE_IMDB_OPDRACHT
             return false;
         }
 
+        /// <summary>
+        /// Return een list met de namen van pagina;s die lijken op de searchterm
+        /// </summary>
         public List<string> SearchIMDB(string searchterm)
         {
             List<string> searchresults = new List<string>();
@@ -135,6 +138,9 @@ namespace SE_IMDB_OPDRACHT
             return searchresults;
         }
 
+        /// <summary>
+        /// Returnt DataSet met de acteurs die in de film spelen en de character die de acteurs spelen.
+        /// </summary>
         public DataSet GetDataMovie(int pagenmr)
         {
             string queryString = "select b.name, a.characternaam from op_movie_acteur a, Op_imdbpage b where a.PAGENMRACTEUR = b.PAGENMR  and a.PAGENMRMOVIE = :un";
@@ -164,6 +170,9 @@ namespace SE_IMDB_OPDRACHT
             return ds;
         }
 
+        /// <summary>
+        /// Returnt DataSet met de acteurs die in de show spelen en de character die de acteurs spelen.
+        /// </summary>
          public DataSet GetDataShow(int pagenmr)
          {
              string queryString = "select b.name, a.characternaam from op_tvshow_acteur a, Op_imdbpage b where a.PAGENMRACTEUR = b.PAGENMR  and a.PAGENMRSHOW =  :un";
@@ -193,6 +202,9 @@ namespace SE_IMDB_OPDRACHT
              return ds;
          }
 
+         /// <summary>
+         /// Returnt DataSet met de series waar de acteurs in spelen en de character die ze spelen.
+         /// </summary>
          public DataSet GetDataActeurShow(int pagenmr)
          {
              string queryString = "select c.NAME, a.CHARACTERNAAM from op_tvshow_acteur a,  op_imdbpage c where c.PAGENMR = a.PAGENMRSHOW and a.PAGENMRACTEUR= :un";
@@ -222,6 +234,9 @@ namespace SE_IMDB_OPDRACHT
              return ds;
          }
 
+         /// <summary>
+         /// Returnt DataSet met de films waar de acteurs in spelen en de character die ze spelen. 
+         /// </summary>
          public DataSet GetDataActeurMovie(int pagenmr)
          {
              string queryString = "select c.NAME, a.CHARACTERNAAM from op_movie_acteur a,  op_imdbpage c where c.PAGENMR = a.PAGENMRMOVIE and a.PAGENMRACTEUR= :un";
@@ -250,6 +265,10 @@ namespace SE_IMDB_OPDRACHT
              }
              return ds;
          }
+
+         /// <summary>
+         /// Returnt de pagenmr van de pagina met de parameter
+         /// </summary>
         public int GetPageNmr(string name)
          {
             int pagenmr = 0;
@@ -271,7 +290,9 @@ namespace SE_IMDB_OPDRACHT
             return pagenmr;
          }
 
-
+        /// <summary>
+        /// Returnt de pagenmr van de pagina met de parameter
+        /// </summary>
         public int GetPageNmrFromImage(string image)
          {
             int pagenmr = 0;
@@ -293,7 +314,9 @@ namespace SE_IMDB_OPDRACHT
             return pagenmr;
          }
 
-
+        /// <summary>
+        /// Returnt de description van de pagina met de parameter
+        /// </summary>
         public string GetDescription(int pagenmr)
         {
             string description = "";
@@ -315,6 +338,9 @@ namespace SE_IMDB_OPDRACHT
             return description;
          }
 
+        /// <summary>
+        /// Returnt de image bestandsnaam van de pagina, waar de pagina nummer hetzelfde is als de parameter
+        /// </summary>
         public string GetImage(int pagenmr)
         {
             string image = "";
@@ -336,6 +362,9 @@ namespace SE_IMDB_OPDRACHT
             return image;
         }
 
+        /// <summary>
+        /// Returnt de pagina soort (actor,serie,movie) van de pagina, waar de pagina nummer hetzelfde is als de parameter
+        /// </summary>
         public string GetPageKind(int pagenmr)
         {
             string pagekind = "";
@@ -357,6 +386,9 @@ namespace SE_IMDB_OPDRACHT
             return pagekind;
         }
 
+        /// <summary>
+        /// Returnt de rating van de pagina, waar de pagina nummer hetzelfde is als de parameter
+        /// </summary>
         public int GetRating(int page)
         {
             int rating = 0;
@@ -391,7 +423,9 @@ namespace SE_IMDB_OPDRACHT
             return rating;
         }
 
-
+        /// <summary>
+        /// Kijkt of de email al de pagina een cijfer heeft gegeven.
+        /// </summary>
         public int AlreadyRated(int page, string email)
         {
             int rating = -1;
@@ -415,6 +449,9 @@ namespace SE_IMDB_OPDRACHT
 
         }
 
+        /// <summary>
+        /// Voegt een pagina toe aan de recently viewed tabel voor de user.
+        /// </summary>
         public void LastViewed(int pagenmr, string email, DateTime viewdate)
         {
             try
@@ -437,7 +474,10 @@ namespace SE_IMDB_OPDRACHT
             }
 
         }
-        
+
+        /// <summary>
+        /// Verwijdert een pagina van de recently viewed tabel voor de user.
+        /// </summary>
         public void DeleteFromViewed(int pagenmr, string email)
         {
             try
@@ -459,6 +499,9 @@ namespace SE_IMDB_OPDRACHT
             }
         }
 
+        /// <summary>
+        /// Returnt de image namen voor de ratings list voor de user.
+        /// </summary>
         public List<string> ProfileRating(string email)
         {
             List<string> profilrating = new List<string>();
@@ -490,6 +533,9 @@ namespace SE_IMDB_OPDRACHT
             return profilrating;
         }
 
+        /// <summary>
+        /// Returnt de pagina namen voor de ratings list voor de user.
+        /// </summary>
         public List<string> ProfileRatingName(string email)
         {
             List<string> profilrating = new List<string>();
@@ -521,6 +567,9 @@ namespace SE_IMDB_OPDRACHT
             return profilrating;
         }
 
+        /// <summary>
+        /// Rate een pagina voor een user.
+        /// </summary>
         public void RatePage(int pagenmr, int rating, string email, DateTime viewdate)
         {
             try
@@ -545,6 +594,9 @@ namespace SE_IMDB_OPDRACHT
 
         }
 
+        /// <summary>
+        /// Update een rating voor de user.
+        /// </summary>
         public void UpdateRatePage(int pagenmr, int rating, string email)
         {
             try
@@ -568,6 +620,9 @@ namespace SE_IMDB_OPDRACHT
             }
         }
 
+        /// <summary>
+        /// Returnt de joindate voor een user.
+        /// </summary>
         public string GetJoinDate(string email)
         {
             string joindate = "";
@@ -590,6 +645,9 @@ namespace SE_IMDB_OPDRACHT
 
         }
 
+        /// <summary>
+        /// Returnt de images/pagina namen voor de paginas die de gebruiks in zijn geschiedenis heeft.
+        /// </summary>
         public List<string> ViewingHistory(string email)
         {
             List<string> history = new List<string>();

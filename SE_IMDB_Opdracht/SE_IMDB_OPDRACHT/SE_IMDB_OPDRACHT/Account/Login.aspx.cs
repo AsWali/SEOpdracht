@@ -22,6 +22,13 @@ namespace SE_IMDB_OPDRACHT.Account
 
         }
 
+
+        /// <summary>
+        /// Creates a cookie if the remember me checkbox is checked.
+        /// And logs in if the login information is correct.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         protected void LogIn(object sender, EventArgs e)
         {
             ///Check if remember me is checked, if so create cookies if not delete cookies
@@ -41,11 +48,12 @@ namespace SE_IMDB_OPDRACHT.Account
                 }
             }
 
-
+            //Kijkt of de login gegevens juist zijn, als het true returnt dan logt de gebruiker in en wordt hij verwijst naar zijn profiel
+            //zo niet dan krijgt hij een error message te zien.
             if (dbconn.TryLogin(UserName.Text, Password.Text))
             {
                 Session["LoggedInUserName"] = UserName.Text;
-                Response.Redirect("~/Default.aspx");
+                Response.Redirect("~/Account/Manage.aspx");
             }
             else
             {

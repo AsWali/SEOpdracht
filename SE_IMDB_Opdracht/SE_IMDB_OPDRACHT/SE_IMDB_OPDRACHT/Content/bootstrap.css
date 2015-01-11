@@ -411,8 +411,8 @@ p {
   font-size: 16.099999999999998px;
   font-weight: 200;
   line-height: 1.4;
-    width: 448px;
-    height: 72px;
+    width: 1000px;
+    height: 279px;
 }
 
 .lead2 {
@@ -878,6 +878,8 @@ pre code {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
+    top: 0px;
+    left: 0px;
 }
 
 .col-xs-1,
@@ -5003,6 +5005,8 @@ a.list-group-item.active > .badge,
 
 .container .jumbotron {
   border-radius: 6px;
+    height: 828px;
+    width: 1200px;
 }
 
 @media screen and (min-width: 768px) {

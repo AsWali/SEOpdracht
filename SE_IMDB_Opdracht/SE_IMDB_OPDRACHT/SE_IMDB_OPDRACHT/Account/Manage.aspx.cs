@@ -24,7 +24,7 @@ namespace SE_IMDB_OPDRACHT.Account
             {
                 pagenmr = dbconn.GetPageNmr(ListBox1.SelectedItem.ToString());
                 Session["pagenmr"] = pagenmr;
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             ListBox1.Attributes.Add("ondblclick", ClientScript.GetPostBackEventReference(ListBox1, "move"));
 
@@ -66,7 +66,7 @@ namespace SE_IMDB_OPDRACHT.Account
         {
             Session["aboutlabel"] = "Pages Rated !";
             Session["searchresult"] = dbconn.ProfileRatingName(username);
-            Response.Redirect("~/about.aspx");
+            Response.Redirect("~/ListPage.aspx");
         }
 
         protected void Image1_Click(object sender, ImageClickEventArgs e)
@@ -74,7 +74,7 @@ namespace SE_IMDB_OPDRACHT.Account
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(ratingimages[lastrated - 1]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -87,7 +87,7 @@ namespace SE_IMDB_OPDRACHT.Account
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(ratingimages[lastrated - 2]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -100,7 +100,7 @@ namespace SE_IMDB_OPDRACHT.Account
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(ratingimages[lastrated - 3]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -113,7 +113,7 @@ namespace SE_IMDB_OPDRACHT.Account
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(ratingimages[lastrated - 4]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
@@ -126,7 +126,7 @@ namespace SE_IMDB_OPDRACHT.Account
             try
             {
                 Session["pagenmr"] = dbconn.GetPageNmrFromImage(ratingimages[lastrated - 5]);
-                Response.Redirect("~/Contact.aspx");
+                Response.Redirect("~/IMDBPage.aspx");
             }
             catch
             {
