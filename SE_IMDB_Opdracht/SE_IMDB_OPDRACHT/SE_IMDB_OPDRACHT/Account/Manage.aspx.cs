@@ -47,6 +47,7 @@ namespace SE_IMDB_OPDRACHT.Account
 
                 }
             }
+            ListBox1.Items.Clear();
             viewinghistory = dbconn.ViewingHistory(username);
             foreach(string pag in viewinghistory)
             {
@@ -68,6 +69,70 @@ namespace SE_IMDB_OPDRACHT.Account
             Response.Redirect("~/about.aspx");
         }
 
+        protected void Image1_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                Session["pagenmr"] = dbconn.GetPageNmrFromImage(ratingimages[lastrated - 1]);
+                Response.Redirect("~/Contact.aspx");
+            }
+            catch
+            {
+
+            }
+        }
+
+        protected void Image2_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                Session["pagenmr"] = dbconn.GetPageNmrFromImage(ratingimages[lastrated - 2]);
+                Response.Redirect("~/Contact.aspx");
+            }
+            catch
+            {
+
+            }
+        }
+
+        protected void Image3_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                Session["pagenmr"] = dbconn.GetPageNmrFromImage(ratingimages[lastrated - 3]);
+                Response.Redirect("~/Contact.aspx");
+            }
+            catch
+            {
+
+            }
+        }
+
+        protected void Image4_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                Session["pagenmr"] = dbconn.GetPageNmrFromImage(ratingimages[lastrated - 4]);
+                Response.Redirect("~/Contact.aspx");
+            }
+            catch
+            {
+
+            }
+        }
+
+        protected void Image5_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                Session["pagenmr"] = dbconn.GetPageNmrFromImage(ratingimages[lastrated - 5]);
+                Response.Redirect("~/Contact.aspx");
+            }
+            catch
+            {
+
+            }
+        }
 
     }
 }

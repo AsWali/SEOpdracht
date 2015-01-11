@@ -13,15 +13,21 @@
     <div>
 
         Your Rating list<br />
-        <asp:Image ID="Image1" runat="server" Height="136px" Width="103px" />
+        <br />
+        <asp:ImageButton ID="Image1" runat="server" Height="136px" ImageUrl="/Content/Images/Default.jpg" OnClick="Image1_Click" />
+&nbsp;&nbsp;
+        <asp:ImageButton ID="Image2" runat="server" Height="136px" ImageUrl="/Content/Images/Default.jpg" OnClick="Image2_Click" />
+&nbsp;&nbsp;
+        <asp:ImageButton ID="Image3" runat="server" Height="136px" ImageUrl="/Content/Images/Default.jpg" OnClick="Image3_Click" />
+&nbsp;&nbsp;
+        <asp:ImageButton ID="Image4" runat="server" Height="136px" ImageUrl="/Content/Images/Default.jpg" OnClick="Image4_Click" />
+&nbsp;&nbsp;
+        <asp:ImageButton ID="Image5" runat="server" Height="136px" ImageUrl="/Content/Images/Default.jpg" OnClick="Image5_Click" />
+        <br />
 &nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Image ID="Image2" runat="server" Height="136px" Width="103px" />
-&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Image ID="Image3" runat="server" Height="136px" Width="103px" />
-&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Image ID="Image4" runat="server" Height="136px" Width="103px" />
-&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Image ID="Image5" runat="server" Height="136px" Width="103px" />
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;
         <br />
         <br />
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Click to see all Ratings" />

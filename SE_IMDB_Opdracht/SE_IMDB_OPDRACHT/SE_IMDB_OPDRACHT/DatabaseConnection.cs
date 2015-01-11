@@ -271,6 +271,29 @@ namespace SE_IMDB_OPDRACHT
             return pagenmr;
          }
 
+
+        public int GetPageNmrFromImage(string image)
+         {
+            int pagenmr = 0;
+            string queryString = "select pagenmr from op_imdbpage where image = :un";
+            OracleCommand cmd = new OracleCommand(queryString, this.conn);
+            cmd.Parameters.Add("un", image);
+
+            this.conn.Open();
+
+            using (OracleDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    pagenmr = reader.GetInt32(0);
+                }
+            }
+            this.conn.Close();
+
+            return pagenmr;
+         }
+
+
         public string GetDescription(int pagenmr)
         {
             string description = "";
@@ -596,5 +619,36 @@ namespace SE_IMDB_OPDRACHT
             }
             return history;
         }
+
+        public List<string> ViewingHistoryImages(string email)
+        {
+            List<string> history = new List<string>();
+            try
+            {
+                string queryString = "select b.image from op_rec_imdbpage a, op_imdbpage b where a.pagenmr = b.pagenmr and email=:un  ORDER BY a.VIEWDATE DESC";
+
+                OracleCommand cmd = new OracleCommand(queryString, this.conn);
+                cmd.Parameters.Add(":un", email);
+                this.conn.Open();
+
+                using (OracleDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        history.Add(reader.GetString(0));
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+            return history;
+        }
+
     }
 }

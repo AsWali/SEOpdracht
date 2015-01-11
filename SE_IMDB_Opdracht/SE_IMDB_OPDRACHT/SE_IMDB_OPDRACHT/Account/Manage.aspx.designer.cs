@@ -37,7 +37,7 @@ namespace SE_IMDB_OPDRACHT.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.ImageButton Image1;
         
         /// <summary>
         /// Image2 control.
@@ -46,7 +46,7 @@ namespace SE_IMDB_OPDRACHT.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image2;
+        protected global::System.Web.UI.WebControls.ImageButton Image2;
         
         /// <summary>
         /// Image3 control.
@@ -55,7 +55,7 @@ namespace SE_IMDB_OPDRACHT.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image3;
+        protected global::System.Web.UI.WebControls.ImageButton Image3;
         
         /// <summary>
         /// Image4 control.
@@ -64,7 +64,7 @@ namespace SE_IMDB_OPDRACHT.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image4;
+        protected global::System.Web.UI.WebControls.ImageButton Image4;
         
         /// <summary>
         /// Image5 control.
@@ -73,7 +73,7 @@ namespace SE_IMDB_OPDRACHT.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image5;
+        protected global::System.Web.UI.WebControls.ImageButton Image5;
         
         /// <summary>
         /// Button2 control.

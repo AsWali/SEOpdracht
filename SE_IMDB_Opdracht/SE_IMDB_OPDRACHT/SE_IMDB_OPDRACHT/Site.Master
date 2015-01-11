@@ -14,14 +14,7 @@
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
-    <style type="text/css">
-        .auto-style1 {
-            width: 120px;
-            height: 65px;
-        }
-    </style>
-
-</head>
+    </head>
 <body>
     <form runat="server">
         <asp:ScriptManager runat="server">
@@ -71,6 +64,23 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
+
+                &nbsp;
+                <asp:ImageButton ID="ImageButton1" runat="server" Height="76px" OnClick="ImageButton1_Click" Width="57px" />
+&nbsp;<asp:ImageButton ID="ImageButton2" runat="server" Height="76px" Width="57px" OnClick="ImageButton2_Click" />
+&nbsp;<asp:ImageButton ID="ImageButton3" runat="server" Height="76px" Width="57px" OnClick="ImageButton3_Click" />
+&nbsp;<asp:ImageButton ID="ImageButton4" runat="server" Height="76px" Width="57px" OnClick="ImageButton4_Click" />
+&nbsp;<asp:ImageButton ID="ImageButton5" runat="server" Height="76px" Width="57px" OnClick="ImageButton5_Click" />
+&nbsp;<asp:ImageButton ID="ImageButton6" runat="server" Height="76px" Width="57px" OnClick="ImageButton6_Click" />
+&nbsp;<asp:ImageButton ID="ImageButton7" runat="server" Height="76px" Width="57px" OnClick="ImageButton7_Click" />
+&nbsp;<asp:ImageButton ID="ImageButton8" runat="server" Height="76px" Width="57px" OnClick="ImageButton8_Click" />
+&nbsp;<asp:ImageButton ID="ImageButton9" runat="server" Height="76px" Width="57px" OnClick="ImageButton9_Click" />
+&nbsp;<asp:ImageButton ID="ImageButton10" runat="server" Height="76px" Width="57px" OnClick="ImageButton10_Click" />
+&nbsp;<asp:ImageButton ID="ImageButton11" runat="server" Height="76px" Width="57px" OnClick="ImageButton11_Click" />
+&nbsp;<asp:ImageButton ID="ImageButton12" runat="server" Height="76px" Width="57px" OnClick="ImageButton12_Click" />
+                <br />
+                <br />
+
                 <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
             </footer>
         </div>

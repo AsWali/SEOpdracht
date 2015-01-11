@@ -13,16 +13,34 @@ namespace SE_IMDB_OPDRACHT.Account
         {
             if (!IsPostBack)
             {
-                if (Request.Cookies["userName"] != null)
+                if (Request.Cookies["UserName"] != null && Request.Cookies["Password"] != null)
                 {
-                    HttpCookie aCookie = Request.Cookies["userName"];
-                    UserName.Text = Server.HtmlEncode(aCookie.Value);
+                    UserName.Text = Request.Cookies["UserName"].Value;
+                    Password.Attributes["value"] = Request.Cookies["Password"].Value;
                 }
             }
+
         }
 
         protected void LogIn(object sender, EventArgs e)
         {
+            ///Check if remember me is checked, if so create cookies if not delete cookies
+            if (RememberMe.Checked == true)
+            {
+                Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(30);
+                Response.Cookies["Password"].Expires = DateTime.Now.AddDays(30);
+                Response.Cookies["UserName"].Value = UserName.Text;
+                Response.Cookies["Password"].Value = Password.Text;
+            }
+            else
+            {
+                if (Request.Cookies["UserName"] != null || Request.Cookies["Password"] != null)
+                {
+                    Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(-1);
+                    Response.Cookies["Password"].Expires = DateTime.Now.AddDays(-1);
+                }
+            }
+
 
             if (dbconn.TryLogin(UserName.Text, Password.Text))
             {
