@@ -114,6 +114,11 @@ namespace SE_IMDB_OPDRACHT
             }
         }
 
+        protected void Homepage(object sender, EventArgs e)
+        {
+
+        }
+
         protected void ProfileView(object sender, EventArgs e)
         {
             if (regman.InnerText == username)
@@ -291,6 +296,18 @@ namespace SE_IMDB_OPDRACHT
             catch
             {
 
+            }
+        }
+
+        protected void HomepageLogo_Click(object sender, ImageClickEventArgs e)
+        {
+            if (loginout.InnerText == username)
+            {
+                Response.Redirect("~/Account/Manage.aspx");
+            }
+            else if (loginout.InnerText == "Log in")
+            {
+                Response.Redirect("~/Default.aspx");
             }
         }
     }

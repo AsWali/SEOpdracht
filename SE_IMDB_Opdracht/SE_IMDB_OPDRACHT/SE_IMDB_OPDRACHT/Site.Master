@@ -6,7 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+    <title><%: Page.Title %>- My ASP.NET Application</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -46,11 +46,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="/Default.aspx" Onserverclick="Homepage" title="IMDB"><img src="http://ia.media-imdb.com/images/M/MV5BMjAzOTcxMDA2Nl5BMl5BcG5nXkFtZTcwMTc1MzIzOA@@._V1_.png" alt="Indie DB" border="0" width="130" height="65"></a>
-                    <asp:TextBox ID="TextBox1" runat="server" Width="203px"></asp:TextBox>
+
+                    <asp:ImageButton ID="HomepageLogo" runat="server" ImageUrl="Content/Images/Logo.png" alt="IMDB" border="0" width="130" height="60px" OnClick="HomepageLogo_Click" />
+                    
+                </div>
+                <div class="col-md-4" style="padding-top:15px">
+                <asp:TextBox ID="TextBox1" runat="server" Width="203px"></asp:TextBox>
+                    
                     <asp:Button ID="Button1" runat="server" Text="Search" OnClick="Button1_Click1" Width="94px" />
                 </div>
-                <div class="navbar-collapse collapse">
+                    <div class="navbar-collapse collapse">
 
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" id="regman" CausesValidation="false" Onserverclick="ProfileView">Register</a></li>
@@ -81,7 +86,7 @@
                 <br />
                 <br />
 
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p>&copy; <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>- My ASP.NET Application</p>
             </footer>
         </div>
     </form>
